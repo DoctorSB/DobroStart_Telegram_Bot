@@ -21,7 +21,7 @@ body {
 }
 
 input {
-    height: 45px;
+    height: 75px;
     width: 100%;
     font-size: 18px;
     font-weight: 500;
@@ -36,10 +36,8 @@ input {
 
 .user-survey-form {
     max-width: 100%;
-    /*max-height: auto;*/
+    height: auto;
     background-color: #020202;
-    box-shadow: #2bd455;
-    border-radius: 10px;
     padding: 3% 2.5%;
 }
 
