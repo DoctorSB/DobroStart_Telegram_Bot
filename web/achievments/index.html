@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        p {
+            text-align: center;
+            font-size: 18px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .achievement {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .achievement img {
+            width: 100px;
+            height: 100px;
+        }
+        .achievement.locked {
+            opacity: 0.3;
+        }
+</style>
+    <div>
+        <h1>Достижения</h1>
+        <div class="achievement-grid">
+            <div class="achievement">
+                <img src="achievement_icon.jpg" alt="Achievement">
+                <p>Добродетель</p>
+            </div>
+            <div class="achievement">
+                <img src="achievement_icon.jpg" alt="Achievement">
+                <p>Делящийся</p>
+            </div>
+            <div class="achievement">
+                <img src="achievement_icon.jpg" alt="Achievement">
+                <p>Добродетель+</p>
+            </div>
+            <div class="achievement locked">
+                <img src="achievement_icon.jpg" alt="Achievement">
+                <p>Делящийся+</p>
+            </div>
+            <div class="achievement locked">
+                <img src="achievement_icon.jpg" alt="Achievement">
+                <p>Добродетель++</p>
+            </div>
+            <div class="achievement locked">
+                <img src="achievement_icon.jpg" alt="Achievement">
+                <p>Делящийся++</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

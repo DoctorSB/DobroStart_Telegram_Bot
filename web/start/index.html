@@ -1,0 +1,100 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <link rel="stylesheet" href="style.css">-->
+<!--    <title>Registration</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--  <div class="container">-->
+<!--    <div class="form">-->
+<!--      <h1>Анкета Добродетеля</h1>-->
+<!--      <div class="data-block">-->
+<!--        <label>-->
+<!--          <input type="text" class="name" placeholder="ФИО">-->
+<!--        </label>-->
+<!--        <label>-->
+<!--          <input type="text" class="email" placeholder="Почта">-->
+<!--        </label>-->
+<!--        <label>-->
+<!--          <input type="text" class="phone" placeholder="Номер">-->
+<!--        </label>-->
+<!--      </div>-->
+<!--      -->
+<!--      <div class="checkbox-area">-->
+<!--        <label class="checkbox-label"><input type="checkbox" name="agree" id="agreeCheckBox" disabled>Даю согласие на обработку персональных данных</label>-->
+<!--      </div>-->
+
+<!--      <div class="send">-->
+<!--        <button>Отправить</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Регистрационная форма</title>-->
+<!--    <link rel="stylesheet" href="style.css">-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div class="container">-->
+<!--        <h2>Регистрационная форма</h2>-->
+<!--        <form>-->
+<!--            <div class="form-group">-->
+<!--                <label for="fullName">ФИО</label>-->
+<!--                <input type="text" id="fullName" placeholder="Введите полное имя">-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="email">Почта</label>-->
+<!--                <input type="email" id="email" placeholder="Введите email">-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="phoneNumber">Номер телефона</label>-->
+<!--                <input type="tel" id="phoneNumber" placeholder="Введите номер телефона">-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <input type="checkbox" id="dataProcessingCheck">-->
+<!--                <label for="dataProcessingCheck">Согласен на обработку персональных данных</label>-->
+<!--            </div>-->
+<!--            <button type="submit">Подтвердить</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрационная форма</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center mt-5 text-uppercase">Анкета добродетеля</h2>
+        <form>
+            <div class="form-group">
+                <label for="fullName">ФИО</label>
+                <input type="text" class="form-control  border-none border-bottom-2 border-radius-0" id="fullName" placeholder="Введите полное имя">
+            </div>
+            <div class="form-group">
+                <label for="email">Почта</label>
+                <input type="email" class="form-control" id="email" placeholder="Введите email">
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">Номер телефона</label>
+                <input type="tel" class="form-control" id="phoneNumber" placeholder="Введите номер телефона">
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="dataProcessingCheck">
+                <label class="form-check-label" for="dataProcessingCheck">Согласен на обработку персональных данных</label>
+            </div>
+            <button type="submit" class="btn btn-primary" id="sendButton">Отправить</button>
+        </form>
+    </div>
+</body>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="app.js"></script>
+</html>
