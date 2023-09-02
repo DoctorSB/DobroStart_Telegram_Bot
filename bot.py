@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import os
 
 import betterlogging as bl
 from aiogram import Bot, Dispatcher
@@ -11,7 +12,11 @@ from tgbot.config import load_config, Config
 from tgbot.handlers import routers_list
 from tgbot.middlewares.config import ConfigMiddleware
 from tgbot.services import broadcaster
-
+REDIS_HOST = os.getenv("REDIS_HOST")
+REDIS_PORT = int(os.getenv("REDIS_PORT"))
+REDIS_DB = int(os.getenv("REDIS_DB"))
+REDIS_PASSWORD = os.getenv("REDIS_PASSWORD")
+REDIS_CONTAINER_NAME = os.getenv("REDIS_CONTAINER_NAME")
 
 async def on_startup(bot: Bot, admin_ids: list[int]):
     await broadcaster.broadcast(bot, admin_ids, "Бот був запущений")
