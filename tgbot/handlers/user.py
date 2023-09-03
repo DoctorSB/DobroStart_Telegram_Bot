@@ -72,7 +72,7 @@ async def user_registration(callback: CallbackQuery, state: FSMContext):
         create_table_query = '''
             insert into users_data
             (id_tg, name, sec_name, last_name, phone_number, email, date_registration, sum_donation, status, level)
-            values ( %s, %s, %s, %s, %s, %s, '03-09-2023', 0, true, 0);
+            values ( %s, %s, %s, %s, %s, %s, '03-09-2023', 0, true, 1);
      '''
 
         task_data = (
