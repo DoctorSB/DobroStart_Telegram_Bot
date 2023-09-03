@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
+import psycopg2 as pg
+import pandas as pd
 
 from environs import Env
 
@@ -39,7 +41,7 @@ class DbConfig:
         password = env.str("POSTGRES_PASSWORD")
         user = env.str("POSTGRES_USER")
         database = env.str("POSTGRES_DB")
-        port = env.int("DB_PORT", 5432)
+        port = env.int("DB_PORT")
         return DbConfig(
             host=host, password=password, user=user, database=database, port=port
         )
@@ -114,7 +116,7 @@ def load_config(path: str = None) -> Config:
 
     return Config(
         tg_bot=TgBot.from_env(env),
-        # db=DbConfig.from_env(env),
+        db=DbConfig.from_env(env),
         # redis=RedisConfig.from_env(env),
         misc=Miscellaneous(),
     )

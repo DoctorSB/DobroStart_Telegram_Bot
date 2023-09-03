@@ -12,11 +12,13 @@ from tgbot.models.states import PurchaseState, UserState
 from aiogram.types.message import ContentType
 from aiogram.filters import CommandStart
 from tgbot.filters.user import PriceCallbackFactory
+import psycopg2 as pg
+import pandas as pd
 
 
 config = load_config(".env")
 bot = Bot(token=config.tg_bot.token, parse_mode='HTML')
-
+db_connect = config.db.get_connect()
 user_router = Router()
 
 
@@ -87,11 +89,21 @@ async def payment_one(callback: CallbackQuery,
     await bot.answer_callback_query(callback.id)
 
 
-@user_router.pre_checkout_query(lambda q: True and UserState.auntificatet)
-async def checkout_process(pre_checkout_query: PreCheckoutQuery):
+@user_router.pre_checkout_query(lambda q: True)
+async def checkout_process(pre_checkout_query: PreCheckoutQuery, state: FSMContext):
+    await state.set_state(PurchaseState.waiting_reply)
     await bot.answer_pre_checkout_query(pre_checkout_query.id, ok=True)
 
 
-@user_router.message(F(ContentType.SUCCESSFUL_PAYMENT) and UserState.auntificatet)
-async def successful_payment(message: Message):
+@user_router.message(PurchaseState.waiting_reply)
+async def successful_payment(message: Message, state: FSMContext):
+    await state.clear()
+
+    cursor = db_connect.cursor()
+    cursor.execute(f"select * from update_by_user_id({message.from_user.id}, {message.successful_payment.total_amount // 100});")
+    db_connect.commit()
+    cursor.close()
+    text = str(pd.read_sql(f"select * from get_discounts_by_user_id({message.from_user.id});", db_connect))
+
+    await message.answer(text=text)
     await message.answer(f'Спасибо за покупку! {message.successful_payment.total_amount // 100} {message.successful_payment.currency}')
