@@ -14,3 +14,10 @@ def get_keyboard_sure():
 
     builder.adjust(2)
     return builder.as_markup()
+
+
+acces_button = [
+    [InlineKeyboardButton(text="✅", callback_data="access")],
+]
+
+acces_keyboard = InlineKeyboardMarkup(inline_keyboard=acces_button)
