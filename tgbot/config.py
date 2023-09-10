@@ -1,11 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
-import psycopg2 as pg
-import pandas as pd
-
 from environs import Env
-
-
+import psycopg2 as pg
 
 
 @dataclass
@@ -15,22 +11,17 @@ class DbConfig:
     user: str
     database: str
     port: int = 5432
-    def construct_sqlalchemy_url(self, driver="asyncpg", host=None, port=None) -> str:
-        from sqlalchemy.engine.url import URL
 
-        if not host:
-            host = self.host
-        if not port:
-            port = self.port
-        uri = URL.create(
-            drivername=f"postgresql+{driver}",
-            username=self.user,
-            password=self.password,
-            host=host,
-            port=port,
-            database=self.database,
-        )
-        return uri.render_as_string(hide_password=False)
+    def get_connect(self):
+        return pg.connect(dbname=self.database, user=self.user, password=self.password, host=self.host, port=self.port)
+
+    def print_info(self):
+        print(f'dbname = {self.dbname}\n'
+              f'user = {self.user}\n'
+              f'passwd = {self.password}\n'
+              f'host = {self.host}\n'
+              f'port = {self.port}\n'
+              f'table = {self.table}\n')
 
     @staticmethod
     def from_env(env: Env):
@@ -47,7 +38,7 @@ class DbConfig:
         )
 
 
-@dataclass
+@ dataclass
 class TgBot:
     """
     Creates the TgBot object from environment variables.
@@ -58,7 +49,7 @@ class TgBot:
     use_redis: bool
     payment_token: str = None
 
-    @staticmethod
+    @ staticmethod
     def from_env(env: Env):
 
         payment_token = env.str("PAYMENTS_TOKEN")
@@ -68,7 +59,7 @@ class TgBot:
         return TgBot(token=token, admin_ids=admin_ids, use_redis=use_redis, payment_token=payment_token)
 
 
-@dataclass
+@ dataclass
 class RedisConfig:
     redis_pass: Optional[str]
     redis_port: Optional[int]
@@ -83,7 +74,7 @@ class RedisConfig:
         else:
             return f"redis://{self.redis_host}:{self.redis_port}/0"
 
-    @staticmethod
+    @ staticmethod
     def from_env(env: Env):
         """
         Creates the RedisConfig object from environment variables.
@@ -97,12 +88,12 @@ class RedisConfig:
         )
 
 
-@dataclass
+@ dataclass
 class Miscellaneous:
     other_params: str = None
 
 
-@dataclass
+@ dataclass
 class Config:
     tg_bot: TgBot
     misc: Miscellaneous
@@ -120,4 +111,3 @@ def load_config(path: str = None) -> Config:
         # redis=RedisConfig.from_env(env),
         misc=Miscellaneous(),
     )
-
